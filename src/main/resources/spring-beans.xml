@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="userf" class="xyz.biandeshen.demo.BeanFactoryReview.UserFactory">
+        <property name="name" value="zhangsan" />
+    </bean>
+
+    <bean id="userFactory" class="xyz.biandeshen.demo.BeanFactoryReview.UserFactoryBean">
+        <constructor-arg name="userFactory" ref="userf" />
+    </bean>
+
+    <bean id="userFactory2" class="xyz.biandeshen.demo.BeanFactoryReview.UserFactoryBean">
+    </bean>
+
+
+    <bean id="customerUser" factory-bean="userf" factory-method="getUser">
+    </bean>
+
+    <bean id="customerUser_Bean" factory-bean="userFactory" factory-method="getUser">
+    </bean>
+
+
+    <bean id="customerUser2" class="xyz.biandeshen.demo.BeanFactoryReview.User">
+        <constructor-arg index="0" value="zhangsan2"/>
+        <constructor-arg index="1" value="0"/>
+    </bean>
+
+    <bean id="customerUser3" class="xyz.biandeshen.demo.BeanFactoryReview.User">
+        <property name="name" value="zhangsan3" />
+        <property name="age" value="0" />
+    </bean>
+
+</beans>
